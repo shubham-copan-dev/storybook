@@ -2,14 +2,11 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 // import Form from "react-bootstrap/Form";
 
-const CustomDropdown = ({ selectedList = "", lists, ...props }) => {
+const CustomDropdown = ({ selectedList = "Selected Default List", lists,setSelectedList, ...props }) => {
   const getSelectedList = (value) => {
-    console.log(value);
-    return value
+    setSelectedList(value)
   };
-  const setSelectedList = (value) => {
-    return value
-  };
+
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -24,7 +21,7 @@ const CustomDropdown = ({ selectedList = "", lists, ...props }) => {
               style={{ display: "flex", gap: "1rem" }}
               onClick={() => {
                 getSelectedList(value);
-                setSelectedList(value);
+                // setSelectedList(value);
               }}
             >
               {props.showCheck && (
@@ -32,7 +29,7 @@ const CustomDropdown = ({ selectedList = "", lists, ...props }) => {
                   type="checkbox"
                   onClick={(event) => {
                     event.stopPropagation();
-                    getSelectedList(value);
+                    // getSelectedList(value); //uncomment this function if required list value on click
                   }}
                 />
               )}
