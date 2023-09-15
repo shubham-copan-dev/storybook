@@ -8,13 +8,23 @@ const Home = () => {
     setViewList(value.name);
     console.log(event,value);
   };
+  // const parent = {
+  //   lists : [
+  //     {name:"list one",icontype:"$",id:1},
+  //     {name:"list two",id:2,rightIcon:"*"},
+  //     {name:"list three",icontype:"$",id:3},
+  //    { name:"list four",id:4},
+  //    { name:"list five",icontype:"$",id:5},
+  //   ],
+
+  // }
   const parent = {
     lists : [
-      {name:"list one",icontype:"$",id:1},
-      {name:"list two",id:2,rightIcon:"*"},
-      {name:"list three",icontype:"$",id:3},
-     { name:"list four",id:4},
-     { name:"list five",icontype:"$",id:5},
+      {name:"list one"},
+      {name:"list two"},
+      {name:"list three"},
+     { name:"list four"},
+     { name:"list five"},
     ],
 
   }
@@ -28,7 +38,7 @@ const Home = () => {
         selectedList={selectedList}
         lists={parent?.lists}
         // leftIcon={parent?.lists?.map(item=>({icon: item?.icontype,  id:item?.id}))}
-        showCheck={true}
+        isMultiDropdown={true}
       />
     </div>
   );

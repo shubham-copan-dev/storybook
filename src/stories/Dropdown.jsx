@@ -3,7 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 // import Form from "react-bootstrap/Form";
 
 const CustomDropdown = ({ selectedList = "Selected Default List", lists=[],setSelectedList, ...props }) => {
-  const {showCheck=false,showButton=true}=props
+  const {isMultiDropdown=false,showButton=true}=props
 
   const getSelectedList = (event,value) => {
     setSelectedList(event,value)
@@ -27,7 +27,7 @@ const CustomDropdown = ({ selectedList = "Selected Default List", lists=[],setSe
                 // setSelectedList(value);
               }}
             >
-              {showCheck && (
+              {isMultiDropdown && (
                 <input
                   type="checkbox"
                   onClick={(event) => {
@@ -39,7 +39,10 @@ const CustomDropdown = ({ selectedList = "Selected Default List", lists=[],setSe
               {rightIcon && <span>{value?.rightIcon}</span>}
               <span>{name}</span>
               {
-                showButton && <button>Default</button>
+                showButton && <button onClick={(event) => {
+                  event.stopPropagation();
+                  // getSelectedList(value); //uncomment this function if required list value on click
+                }}>Default</button>
               }
               {icontype && <span>{value?.icontype}</span>}
             </Dropdown.Item>
