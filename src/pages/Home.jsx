@@ -4,24 +4,30 @@ import CustomDropdown from "../stories/Dropdown";
 const Home = () => {
 
   const [selectedList, setViewList] = useState("selected default list");
-  const setSelectedList = (value) => {
-    setViewList(value);
-    console.log(value);
+  const setSelectedList = (event,value) => {
+    setViewList(value.name);
+    console.log(event,value);
   };
-  const lists = [
-    "list one",
-    "list two",
-    "list three",
-    "list four",
-    "list five",
-  ];
+  const parent = {
+    lists : [
+      {name:"list one",icontype:"$",id:1},
+      {name:"list two",id:2,rightIcon:"*"},
+      {name:"list three",icontype:"$",id:3},
+     { name:"list four",id:4},
+     { name:"list five",icontype:"$",id:5},
+    ],
+
+  }
+
+  console.log(parent?.lists?.map(item=> ({ name: item?.name, id: item?.id })),"lll");
 
   return (
     <div>
       <CustomDropdown
         setSelectedList={setSelectedList}
         selectedList={selectedList}
-        lists={lists}
+        lists={parent?.lists}
+        // leftIcon={parent?.lists?.map(item=>({icon: item?.icontype,  id:item?.id}))}
         showCheck={true}
       />
     </div>

@@ -2,9 +2,11 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 // import Form from "react-bootstrap/Form";
 
-const CustomDropdown = ({ selectedList = "Selected Default List", lists,setSelectedList, ...props }) => {
-  const getSelectedList = (value) => {
-    setSelectedList(value)
+const CustomDropdown = ({ selectedList = "Selected Default List", lists=[],setSelectedList, ...props }) => {
+  const {showCheck=false,showButton=true}=props
+
+  const getSelectedList = (event,value) => {
+    setSelectedList(event,value)
   };
 
   return (
@@ -15,16 +17,17 @@ const CustomDropdown = ({ selectedList = "Selected Default List", lists,setSelec
 
       <Dropdown.Menu>
         {lists.map((value, index) => {
+          const {icontype="",rightIcon="",name=""} = value
           return (
             <Dropdown.Item
               key={index}
               style={{ display: "flex", gap: "1rem" }}
-              onClick={() => {
-                getSelectedList(value);
+              onClick={(event) => {
+                getSelectedList(event,value);
                 // setSelectedList(value);
               }}
             >
-              {props.showCheck && (
+              {showCheck && (
                 <input
                   type="checkbox"
                   onClick={(event) => {
@@ -33,7 +36,12 @@ const CustomDropdown = ({ selectedList = "Selected Default List", lists,setSelec
                   }}
                 />
               )}
-              {value}
+              {rightIcon && <span>{value?.rightIcon}</span>}
+              <span>{name}</span>
+              {
+                showButton && <button>Default</button>
+              }
+              {icontype && <span>{value?.icontype}</span>}
             </Dropdown.Item>
           );
         })}
